@@ -37,37 +37,39 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: CartaoPadrao(
-                      aoPressionar: (){
+                    child: GestureDetector(
+                      onTap: () {
                         setState(() {
-                          sexoSelecionado == Sexo.masculino;
-                          print("Masc");
+                          sexoSelecionado = Sexo.masculino;
                         });
                       },
-                      cor: sexoSelecionado == Sexo.masculino
-                          ? corAtivaCartaoPadrao
-                          : corInativaCataoPadrao,
-                      filhoCartao: const ConteudoIcone(
-                        icone: FontAwesomeIcons.mars,
-                        descricao: "MASCULINO",
+                      child: CartaoPadrao(
+                        cor: sexoSelecionado == Sexo.masculino
+                            ? corAtivaCartaoPadrao
+                            : corInativaCataoPadrao,
+                        filhoCartao: const ConteudoIcone(
+                          icone: FontAwesomeIcons.mars,
+                          descricao: "MASCULINO",
+                        ),
                       ),
                     ),
                   ),
                   //Text("RESPONDER", style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
                   Expanded(
-                    child: CartaoPadrao(
-                      aoPressionar: (){
+                    child: GestureDetector(
+                       onTap: () {
                         setState(() {
-                          sexoSelecionado == Sexo.feminino;
-                          print("Fem");
+                          sexoSelecionado = Sexo.feminino;
                         });
                       },
-                      cor: sexoSelecionado == Sexo.feminino
-                          ? corAtivaCartaoPadrao
-                          : corInativaCataoPadrao,
-                      filhoCartao: const ConteudoIcone(
-                        icone: FontAwesomeIcons.venus,
-                        descricao: "FEMININO",
+                      child: CartaoPadrao(
+                        cor: sexoSelecionado == Sexo.feminino
+                            ? corAtivaCartaoPadrao
+                            : corInativaCataoPadrao,
+                        filhoCartao: const ConteudoIcone(
+                          icone: FontAwesomeIcons.venus,
+                          descricao: "FEMININO",
+                        ),
                       ),
                     ),
                   ),
