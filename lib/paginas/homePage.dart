@@ -131,39 +131,24 @@ class _MyHomePageState extends State<HomePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RawMaterialButton(
-                                onPressed: () {
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.minus,
+                                aoPressionar: () {
                                   setState(() {
                                     peso--;
                                   });
                                 },
-                                elevation: 5.0,
-                                constraints: const BoxConstraints.tightFor(
-                                    width: 56.0, height: 56.0),
-                                shape: const CircleBorder(),
-                                fillColor: const Color(0xFF7E7E7E),
-                                child: const Icon(FontAwesomeIcons.minus),
                               ),
-                              // BotaoArredondado(
-                              //   icone: FontAwesomeIcons.minus,
-
-                              // ),
                               const SizedBox(
                                 width: 5.0,
                               ),
-
-                              RawMaterialButton(
-                                onPressed: () {
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.plus,
+                                aoPressionar: () {
                                   setState(() {
                                     peso++;
                                   });
                                 },
-                                elevation: 5.0,
-                                constraints: const BoxConstraints.tightFor(
-                                    width: 56.0, height: 56.0),
-                                shape: const CircleBorder(),
-                                fillColor: const Color(0xFF7E7E7E),
-                                child: const Icon(FontAwesomeIcons.plus),
                               ),
                             ],
                           ),
@@ -197,10 +182,13 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ),
             Container(
+              alignment: Alignment.center,
               color: kCorContainerInferior,
               margin: const EdgeInsets.only(top: 10.0),
               width: double.infinity, //preenche toda a tela na horizontal.
               height: kAlturaContainerInferior,
+              child: const Text("CALCULAR"),
+              
             )
           ],
         ));
@@ -208,28 +196,28 @@ class _MyHomePageState extends State<HomePage> {
 }
 
 // Ainda não consegui usar a "Function final Function ?aoPressionar;"
-//class BotaoArredondado extends StatelessWidget {
-//   const BotaoArredondado({super.key, this.icone});
+class BotaoArredondado extends StatelessWidget {
+  const BotaoArredondado({super.key, this.icone, this.aoPressionar});
 
-//   final IconData? icone;
-//   //final Function ?aoPressionar;
+  final IconData? icone;
+  final Function()? aoPressionar;
 
-//   // void aoPressionar(){
+  // void aoPressionar(){
 
-//   // }
+  // }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return RawMaterialButton(
-//       onPressed: () {},
-//       elevation: 5.0,
-//       constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
-//       shape: const CircleBorder(),
-//       fillColor: const Color(0xFF7E7E7E),
-//       child: Icon(icone),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: aoPressionar,
+      elevation: 5.0,
+      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF7E7E7E),
+      child: Icon(icone),
+    );
+  }
+}
 
 // Color corMasculinoCartaoPadrao = corInativaCataoPadrao;
 // Color corFemininoCartaoPadrao = corInativaCataoPadrao;
