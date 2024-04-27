@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:meu_app/widget/constantes.dart';
 import 'package:meu_app/widget/cartaoPadrao.dart';
 import 'package:meu_app/widget/conteudoIcone.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,11 +10,6 @@ enum Sexo {
   feminino,
 }
 
-const alturaContainerInferior = 80.0;
-const corAtivaCartaoPadrao = Color(0xFF9E9E9E);
-const corInativaCataoPadrao = Color.fromARGB(255, 54, 54, 54);
-const corContainerInferior = Color(0xFFFF5822);
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -22,7 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-  Sexo ?sexoSelecionado;
+  Sexo? sexoSelecionado;
+  int altura = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +29,7 @@ class _MyHomePageState extends State<HomePage> {
           centerTitle: true,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Row(
@@ -45,8 +43,8 @@ class _MyHomePageState extends State<HomePage> {
                       },
                       child: CartaoPadrao(
                         cor: sexoSelecionado == Sexo.masculino
-                            ? corAtivaCartaoPadrao
-                            : corInativaCataoPadrao,
+                            ? kCorAtivaCartaoPadrao
+                            : kCorInativaCataoPadrao,
                         filhoCartao: const ConteudoIcone(
                           icone: FontAwesomeIcons.mars,
                           descricao: "MASCULINO",
@@ -57,15 +55,15 @@ class _MyHomePageState extends State<HomePage> {
                   //Text("RESPONDER", style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
                   Expanded(
                     child: GestureDetector(
-                       onTap: () {
+                      onTap: () {
                         setState(() {
                           sexoSelecionado = Sexo.feminino;
                         });
                       },
                       child: CartaoPadrao(
                         cor: sexoSelecionado == Sexo.feminino
-                            ? corAtivaCartaoPadrao
-                            : corInativaCataoPadrao,
+                            ? kCorAtivaCartaoPadrao
+                            : kCorInativaCataoPadrao,
                         filhoCartao: const ConteudoIcone(
                           icone: FontAwesomeIcons.venus,
                           descricao: "FEMININO",
@@ -78,8 +76,40 @@ class _MyHomePageState extends State<HomePage> {
             ),
             Expanded(
               child: CartaoPadrao(
-                cor: corAtivaCartaoPadrao,
-               
+                cor: kCorAtivaCartaoPadrao,
+                filhoCartao: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "ALTURA",
+                      style: kDescricaoTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(altura.toString(), style: kNumeroTextStyle),
+                        const Text(
+                          "cm",
+                          style: kDescricaoTextStyle,
+                        )
+                      ],
+                    ),
+                    Slider(
+                      activeColor: kCorContainerInferior,
+                      inactiveColor: const Color(0xFF8D8E98),
+                      onChanged: (double novoValor) {
+                        setState(() {
+                          altura = novoValor.round();
+                        });
+                      },
+                      value: altura.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -87,7 +117,7 @@ class _MyHomePageState extends State<HomePage> {
                 children: [
                   Expanded(
                     child: CartaoPadrao(
-                      cor: corAtivaCartaoPadrao, 
+                      cor: kCorAtivaCartaoPadrao,
                       filhoCartao: const Column(
                         children: [
                           //Icon(FontAwesomeIcons.mars, size: 95.0)
@@ -97,7 +127,7 @@ class _MyHomePageState extends State<HomePage> {
                   ),
                   Expanded(
                     child: CartaoPadrao(
-                      cor: corAtivaCartaoPadrao,
+                      cor: kCorAtivaCartaoPadrao,
                       filhoCartao: const Column(
                         children: [
                           //Icon(FontAwesomeIcons.mars, size: 95.0)
@@ -109,10 +139,10 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              color: corContainerInferior,
+              color: kCorContainerInferior,
               margin: const EdgeInsets.only(top: 10.0),
               width: double.infinity, //preenche toda a tela na horizontal.
-              height: alturaContainerInferior,
+              height: kAlturaContainerInferior,
             )
           ],
         ));

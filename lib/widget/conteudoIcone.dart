@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-const descricaoTextStyle =
-    TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w700);
+import 'package:meu_app/widget/constantes.dart';
 
 class ConteudoIcone extends StatelessWidget {
   const ConteudoIcone(
@@ -21,7 +19,7 @@ class ConteudoIcone extends StatelessWidget {
         ),
         Text(
           descricao,
-          style: descricaoTextStyle,
+          style: kDescricaoTextStyle,
         )
       ],
     );
