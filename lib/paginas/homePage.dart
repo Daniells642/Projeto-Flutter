@@ -36,39 +36,37 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: CartaoPadrao(
+                      aoPressionar: () {
                         setState(() {
                           sexoSelecionado = Sexo.masculino;
+                          print("HOMEM");
                         });
                       },
-                      child: CartaoPadrao(
-                        cor: sexoSelecionado == Sexo.masculino
-                            ? kCorAtivaCartaoPadrao
-                            : kCorInativaCataoPadrao,
-                        filhoCartao: const ConteudoIcone(
-                          icone: FontAwesomeIcons.mars,
-                          descricao: "MASCULINO",
-                        ),
+                      cor: sexoSelecionado == Sexo.masculino
+                          ? kCorAtivaCartaoPadrao
+                          : kCorInativaCataoPadrao,
+                      filhoCartao: const ConteudoIcone(
+                        icone: FontAwesomeIcons.mars,
+                        descricao: "MASCULINO",
                       ),
                     ),
                   ),
                   //Text("RESPONDER", style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: CartaoPadrao(
+                      aoPressionar: () {
                         setState(() {
                           sexoSelecionado = Sexo.feminino;
+                          print("está funçando");
                         });
                       },
-                      child: CartaoPadrao(
-                        cor: sexoSelecionado == Sexo.feminino
-                            ? kCorAtivaCartaoPadrao
-                            : kCorInativaCataoPadrao,
-                        filhoCartao: const ConteudoIcone(
-                          icone: FontAwesomeIcons.venus,
-                          descricao: "FEMININO",
-                        ),
+                      cor: sexoSelecionado == Sexo.feminino
+                          ? kCorAtivaCartaoPadrao
+                          : kCorInativaCataoPadrao,
+                      filhoCartao: const ConteudoIcone(
+                        icone: FontAwesomeIcons.venus,
+                        descricao: "FEMININO",
                       ),
                     ),
                   ),
@@ -130,18 +128,42 @@ class _MyHomePageState extends State<HomePage> {
                             peso.toString(),
                             style: kNumeroTextStyle,
                           ),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              BotaoArredondado(
-                                icone: FontAwesomeIcons.minus,                              
-                                
+                              RawMaterialButton(
+                                onPressed: () {
+                                  setState(() {
+                                    peso--;
+                                  });
+                                },
+                                elevation: 5.0,
+                                constraints: const BoxConstraints.tightFor(
+                                    width: 56.0, height: 56.0),
+                                shape: const CircleBorder(),
+                                fillColor: const Color(0xFF7E7E7E),
+                                child: const Icon(FontAwesomeIcons.minus),
                               ),
-                              SizedBox(
+                              // BotaoArredondado(
+                              //   icone: FontAwesomeIcons.minus,
+
+                              // ),
+                              const SizedBox(
                                 width: 5.0,
                               ),
-                              BotaoArredondado(
-                                icone: FontAwesomeIcons.plus,
+
+                              RawMaterialButton(
+                                onPressed: () {
+                                  setState(() {
+                                    peso++;
+                                  });
+                                },
+                                elevation: 5.0,
+                                constraints: const BoxConstraints.tightFor(
+                                    width: 56.0, height: 56.0),
+                                shape: const CircleBorder(),
+                                fillColor: const Color(0xFF7E7E7E),
+                                child: const Icon(FontAwesomeIcons.plus),
                               ),
                             ],
                           ),
@@ -185,32 +207,32 @@ class _MyHomePageState extends State<HomePage> {
   }
 }
 
-class BotaoArredondado extends StatelessWidget {
-  const BotaoArredondado({super.key, this.icone});
+// Ainda não consegui usar a "Function final Function ?aoPressionar;"
+//class BotaoArredondado extends StatelessWidget {
+//   const BotaoArredondado({super.key, this.icone});
 
-  final IconData ?icone;
-  //final Function ?aoPressionar;
+//   final IconData? icone;
+//   //final Function ?aoPressionar;
 
-  // void aoPressionar(){
+//   // void aoPressionar(){
 
-  // }
+//   // }
 
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: (){},
-      elevation: 5.0,
-      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: const CircleBorder(),
-      fillColor: const Color(0xFF7E7E7E),
-      child: Icon(icone),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return RawMaterialButton(
+//       onPressed: () {},
+//       elevation: 5.0,
+//       constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
+//       shape: const CircleBorder(),
+//       fillColor: const Color(0xFF7E7E7E),
+//       child: Icon(icone),
+//     );
+//   }
+// }
 
-
-  // Color corMasculinoCartaoPadrao = corInativaCataoPadrao;
-  // Color corFemininoCartaoPadrao = corInativaCataoPadrao;
+// Color corMasculinoCartaoPadrao = corInativaCataoPadrao;
+// Color corFemininoCartaoPadrao = corInativaCataoPadrao;
 
 // //1 = masculino, 2 = feminino
 //   void atualizarCor(Sexo sexoSelecionado) {
