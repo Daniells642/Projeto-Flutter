@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meu_app/service/calcular_Imc.dart';
 
 class WidgetClass {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -83,7 +82,7 @@ class WidgetClass {
         ),
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            const CalculoImc().calculateImc();
+            //const CalculoImc().calculateImc();
             
             //debugPrint("clicou");
         }

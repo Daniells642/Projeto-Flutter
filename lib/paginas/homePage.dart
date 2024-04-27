@@ -20,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   Sexo? sexoSelecionado;
   int altura = 180;
+  int peso = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +119,32 @@ class _MyHomePageState extends State<HomePage> {
                   Expanded(
                     child: CartaoPadrao(
                       cor: kCorAtivaCartaoPadrao,
-                      filhoCartao: const Column(
+                      filhoCartao: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //Icon(FontAwesomeIcons.mars, size: 95.0)
+                          const Text(
+                            'PESO',
+                            style: kDescricaoTextStyle,
+                          ),
+                          Text(
+                            peso.toString(),
+                            style: kNumeroTextStyle,
+                          ),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.minus,                              
+                                
+                              ),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -128,9 +152,21 @@ class _MyHomePageState extends State<HomePage> {
                   Expanded(
                     child: CartaoPadrao(
                       cor: kCorAtivaCartaoPadrao,
-                      filhoCartao: const Column(
+                      filhoCartao: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          const Text('IDADE'),
                           //Icon(FontAwesomeIcons.mars, size: 95.0)
+
+                          FloatingActionButton(
+                            backgroundColor: const Color(0xFF7E7E7E),
+                            onPressed: () {},
+
+                            // const Icon(
+                            //   Icons.add,
+                            //   color: Colors.white,
+                            // ),
+                          ),
                         ],
                       ),
                     ),
@@ -146,6 +182,29 @@ class _MyHomePageState extends State<HomePage> {
             )
           ],
         ));
+  }
+}
+
+class BotaoArredondado extends StatelessWidget {
+  const BotaoArredondado({super.key, this.icone});
+
+  final IconData ?icone;
+  //final Function ?aoPressionar;
+
+  // void aoPressionar(){
+
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: (){},
+      elevation: 5.0,
+      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF7E7E7E),
+      child: Icon(icone),
+    );
   }
 }
 
