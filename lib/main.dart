@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meu_app/paginas/homePage.dart';
+import 'package:meu_app/paginas/telasResultados.dart';
 
-void main() {
-  runApp(const CalculadoraImc());
-}
+void main() => runApp(const CalculadoraImc());
 
 class CalculadoraImc extends StatelessWidget {
   const CalculadoraImc({super.key});
@@ -12,11 +11,12 @@ class CalculadoraImc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: const HomePage(),
-      );
+      //home: const HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/telaResultados': (context) => const TelaResultados(),
+      },
+    );
   }
 }
-
-
-
-

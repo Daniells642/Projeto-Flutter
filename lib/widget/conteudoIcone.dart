@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_app/widget/constantes.dart';
+import 'package:meu_app/utils/constantes.dart';
 
 class ConteudoIcone extends StatelessWidget {
   const ConteudoIcone(

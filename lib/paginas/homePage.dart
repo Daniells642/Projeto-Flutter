@@ -1,8 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:meu_app/widget/constantes.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:meu_app/utils/constantes.dart';
 import 'package:meu_app/widget/cartaoPadrao.dart';
+import 'package:meu_app/widget/botaoInferior.dart';
 import 'package:meu_app/widget/conteudoIcone.dart';
+import 'package:meu_app/widget/botaoArredondado.dart';
+import 'package:meu_app/paginas/telasResultados.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum Sexo {
@@ -19,8 +23,9 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   Sexo? sexoSelecionado;
-  int altura = 180;
+  int altura = 170;
   int peso = 60;
+  int idade = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class _MyHomePageState extends State<HomePage> {
                       aoPressionar: () {
                         setState(() {
                           sexoSelecionado = Sexo.masculino;
-                          print("HOMEM");
+                          //print("HOMEM");
                         });
                       },
                       cor: sexoSelecionado == Sexo.masculino
@@ -58,7 +63,7 @@ class _MyHomePageState extends State<HomePage> {
                       aoPressionar: () {
                         setState(() {
                           sexoSelecionado = Sexo.feminino;
-                          print("está funçando");
+                          //print("está funçando");
                         });
                       },
                       cor: sexoSelecionado == Sexo.feminino
@@ -136,6 +141,14 @@ class _MyHomePageState extends State<HomePage> {
                                 aoPressionar: () {
                                   setState(() {
                                     peso--;
+
+                                    if (peso < 0) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Informe um peso válido.")));
+                                      peso++;
+                                    }
                                   });
                                 },
                               ),
@@ -162,17 +175,47 @@ class _MyHomePageState extends State<HomePage> {
                       filhoCartao: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('IDADE'),
-                          //Icon(FontAwesomeIcons.mars, size: 95.0)
+                          const Text(
+                            'IDADE',
+                            style: kDescricaoTextStyle,
+                          ),
+                          Text(
+                            idade.toString(),
+                            style: kNumeroTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.minus,
+                                aoPressionar: () {
+                                  setState(() {
+                                    idade--;
 
-                          FloatingActionButton(
-                            backgroundColor: const Color(0xFF7E7E7E),
-                            onPressed: () {},
+                                    if (idade < 10) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Informe uma idade maior que 10.")));
+                                      idade++;
+                                    }
 
-                            // const Icon(
-                            //   Icons.add,
-                            //   color: Colors.white,
-                            // ),
+                                    //print(idade);
+                                  });
+                                },
+                              ),
+                              const SizedBox(
+                                width: 5.0,
+                              ),
+                              BotaoArredondado(
+                                icone: FontAwesomeIcons.plus,
+                                aoPressionar: () {
+                                  setState(() {
+                                    idade++;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -181,43 +224,46 @@ class _MyHomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              color: kCorContainerInferior,
-              margin: const EdgeInsets.only(top: 10.0),
-              width: double.infinity, //preenche toda a tela na horizontal.
-              height: kAlturaContainerInferior,
-              child: const Text("CALCULAR"),
-              
-            )
+            GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "/telaResultados");
+      },
+      child: Container(
+        alignment: Alignment.center,
+        color: kCorContainerInferior,
+        margin: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(bottom: 20.0),
+        width: double.infinity, //preenche toda a tela na horizontal.
+        height: kAlturaContainerInferior,
+        child: const Text(
+          "CALCULAR",
+          style: kBotaoGrande,
+        ),
+      ),
+    ),
           ],
         ));
   }
 }
 
+                          //Icon(FontAwesomeIcons.mars, size: 95.0)
+
+                          // FloatingActionButton(
+                          //   backgroundColor: const Color(0xFF7E7E7E),
+                          //   onPressed: () {},
+
+                          // const Icon(
+                          //   Icons.add,
+                          //   color: Colors.white,
+                          // ),
+// Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                     builder: (context) => const TelaResultados()));
+
+
 // Ainda não consegui usar a "Function final Function ?aoPressionar;"
-class BotaoArredondado extends StatelessWidget {
-  const BotaoArredondado({super.key, this.icone, this.aoPressionar});
 
-  final IconData? icone;
-  final Function()? aoPressionar;
-
-  // void aoPressionar(){
-
-  // }
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: aoPressionar,
-      elevation: 5.0,
-      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: const CircleBorder(),
-      fillColor: const Color(0xFF7E7E7E),
-      child: Icon(icone),
-    );
-  }
-}
 
 // Color corMasculinoCartaoPadrao = corInativaCataoPadrao;
 // Color corFemininoCartaoPadrao = corInativaCataoPadrao;
