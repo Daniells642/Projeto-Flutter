@@ -6,13 +6,13 @@ class CalculadoraIMC {
 
   final int altura;
   final int peso;
-  final double _imc = 0;
+  double _imc = 0;
 
   String calcularImc() {
     // ignore: no_leading_underscores_for_local_identifiers
-    double _imc = peso / pow(altura / 100, 2);
+    _imc = peso / pow(altura / 100, 2);
     // ignore: no_leading_underscores_for_local_identifiers
-    ///double _imc = (peso / (altura * altura));
+    ///_imc = (peso / (altura * altura));
 
     return _imc.toStringAsFixed(1);
   }

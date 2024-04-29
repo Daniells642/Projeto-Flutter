@@ -17,3 +17,4 @@ const kIMCTextStyle = TextStyle(
     fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.black);
 
 const kCorpoTextStyle = TextStyle(fontSize: 20.0, color: Colors.black);
+

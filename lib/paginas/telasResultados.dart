@@ -46,9 +46,13 @@ class TelaResultados extends StatelessWidget {
                       resultadoIMC,
                       style: kIMCTextStyle,
                     ),
-                    Text(
-                      resultadoInterpretacao,
-                      style: kCorpoTextStyle,
+                    Padding(
+                      padding: const EdgeInsets.all(35.0),
+                      
+                      child: Text(
+                        resultadoInterpretacao,
+                        style: kCorpoTextStyle,
+                      ),
                     )
                   ],
                 ),
