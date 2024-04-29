@@ -4,7 +4,12 @@ import 'package:meu_app/widget/cartaoPadrao.dart';
 import 'package:meu_app/widget/botaoInferior.dart';
 
 class TelaResultados extends StatelessWidget {
-  const TelaResultados({super.key});
+
+  final String resultadoIMC;
+  final String resultadoTexto;
+  final String resultadoInterpretacao;
+  
+  const TelaResultados({super.key, required this.resultadoIMC, required this.resultadoTexto, required this.resultadoInterpretacao});
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +34,20 @@ class TelaResultados extends StatelessWidget {
               flex: 5,
               child: CartaoPadrao(
                 cor: kCorAtivaCartaoPadrao,
-                filhoCartao: const Column(
+                filhoCartao: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "NORMAL",
+                      resultadoTexto.toUpperCase(),
                       style: kResultadoTextStyle,
                     ),
                     Text(
-                      "18.4",
+                      resultadoIMC,
                       style: kIMCTextStyle,
                     ),
                     Text(
-                      "Seu IMC está baixo",
+                      resultadoInterpretacao,
                       style: kCorpoTextStyle,
                     )
                   ],

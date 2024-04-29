@@ -11,9 +11,7 @@ class BotaoInferior extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        aoPressionar;
-      },
+      onTap: aoPressionar,
       child: Container(
         alignment: Alignment.center,
         color: kCorContainerInferior,

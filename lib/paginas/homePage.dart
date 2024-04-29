@@ -5,6 +5,7 @@ import 'package:meu_app/utils/constantes.dart';
 import 'package:meu_app/widget/cartaoPadrao.dart';
 import 'package:meu_app/widget/botaoInferior.dart';
 import 'package:meu_app/widget/conteudoIcone.dart';
+import 'package:meu_app/utils/calculadora_IMC.dart';
 import 'package:meu_app/widget/botaoArredondado.dart';
 import 'package:meu_app/paginas/telasResultados.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -199,8 +200,6 @@ class _MyHomePageState extends State<HomePage> {
                                                   "Informe uma idade maior que 10.")));
                                       idade++;
                                     }
-
-                                    //print(idade);
                                   });
                                 },
                               ),
@@ -224,23 +223,21 @@ class _MyHomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, "/telaResultados");
-      },
-      child: Container(
-        alignment: Alignment.center,
-        color: kCorContainerInferior,
-        margin: const EdgeInsets.only(top: 10.0),
-        padding: const EdgeInsets.only(bottom: 20.0),
-        width: double.infinity, //preenche toda a tela na horizontal.
-        height: kAlturaContainerInferior,
-        child: const Text(
-          "CALCULAR",
-          style: kBotaoGrande,
-        ),
-      ),
-    ),
+            BotaoInferior(
+              tituloBotao: "CALCULAR",
+              aoPressionar: () {
+                CalculadoraIMC calc = CalculadoraIMC(altura, peso);
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TelaResultados(
+                              resultadoIMC: calc.calcularImc(),
+                              resultadoTexto: calc.obterResultado(), 
+                              resultadoInterpretacao: calc.obterInterpretacao(),
+                            )));
+              },
+            ),
           ],
         ));
   }

@@ -12,7 +12,7 @@ const kCorContainerInferior = Color(0xFFFF5822);
 const kBotaoGrande = TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900);
 const kTituloTextStyle = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold);
 const kResultadoTextStyle = TextStyle(
-    color: Color(0xFF24D876), fontSize: 22.0, fontWeight: FontWeight.bold);
+    color: Color(0xFF24D876), fontSize: 20.0, fontWeight: FontWeight.bold);
 const kIMCTextStyle = TextStyle(
     fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.black);
 
